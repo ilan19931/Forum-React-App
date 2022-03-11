@@ -1,0 +1,10 @@
+.login {
+  width: 40%;
+  margin: 3rem auto;
+  background: #ebedef;
+  border-radius: 10px;
+}
+
+.login-container {
+  padding: 0.5rem;
+}

@@ -1,0 +1,30 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.left img {
+  height: 60px;
+  width: 60px;
+  border-radius: 80px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right .right-nav-item {
+  margin: 0 0.3rem;
+}

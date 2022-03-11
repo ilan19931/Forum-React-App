@@ -1,0 +1,13 @@
+.navbar-search {
+  display: flex;
+  margin: 0 0.5rem;
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.navbar-search button {
+  margin-left: 0.5rem;
+}
