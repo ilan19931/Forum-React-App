@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { v4 as uuid } from "uuid";
 
 import { SET_ALERT, DELETE_ALERT } from "../types";

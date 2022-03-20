@@ -1,13 +1,13 @@
 import React from "react";
 
 import PopularPosts from "./PopularPosts/PopularPosts";
-import Forums from "./Forums/Forums";
+import Categories from "./Categories/Categories";
 
 const Home = () => {
   return (
     <div>
       <PopularPosts />
-      <Forums />
+      <Categories />
     </div>
   );
 };

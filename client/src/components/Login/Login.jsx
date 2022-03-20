@@ -1,16 +1,32 @@
-import axios from "axios";
-
 import { useState } from "react";
 
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "../../redux/actions/user.actions";
 
 import "./login.css";
 
-const Login = ({ login }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ login, isAuthenticated }) => {
+  const navigate = useNavigate();
+
+  if (isAuthenticated) {
+    navigate("/");
+  }
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -20,9 +36,7 @@ const Login = ({ login }) => {
       password,
     };
 
-    if (email && password) {
-      await login(data);
-    }
+    await login(data);
   }
 
   return (
@@ -34,8 +48,9 @@ const Login = ({ login }) => {
             <label htmlFor="email">Email</label>
             <input
               type="text"
+              name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               className="form-control"
               placeholder="Email"
             />
@@ -45,8 +60,9 @@ const Login = ({ login }) => {
             <label htmlFor="password">Password</label>
             <input
               type="password"
+              name="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
               className="form-control"
               placeholder="Password"
             />
@@ -66,4 +82,8 @@ const Login = ({ login }) => {
   );
 };
 
-export default connect(null, { login })(Login);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

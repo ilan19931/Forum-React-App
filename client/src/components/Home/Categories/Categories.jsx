@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
-//import { useGetAllCategoriesQuery } from "../../api/forumsApi";
 
-import "./forums.css";
+import { connect } from "react-redux";
 
-const Forums = () => {
-  const { data: categories, isFetching } = [["test1", "test2"], false];
-  if (isFetching) return "Loading...";
+import Spinner from "../../layout/Spinner/Spinner";
 
-  return (
+import { getAllCategories } from "../../../redux/actions/category.actions";
+
+import "./categories.css";
+import { useEffect } from "react";
+
+const Categories = ({ getAllCategories, categories }) => {
+  useEffect(() => {
+    getAllCategories();
+  }, [getAllCategories]);
+
+  return categories.loading ? (
+    <Spinner />
+  ) : (
     <div className="forums">
       <div className="forums-container">
         {/* category  item loop her */}
@@ -43,4 +52,8 @@ const Forums = () => {
   );
 };
 
-export default Forums;
+const mapStateToProps = (state) => ({
+  categories: state.categories,
+});
+
+export default connect(mapStateToProps, { getAllCategories })(Categories);

@@ -16,3 +16,11 @@ a {
 body {
   font-family: "Roboto", sans-serif;
 }
+
+.alerts {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+}

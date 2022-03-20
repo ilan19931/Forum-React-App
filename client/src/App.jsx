@@ -15,13 +15,27 @@ import {
   Alerts,
 } from "./components";
 
+import { loadUser } from "./redux/actions/user.actions";
+import setAuthToken from "./utils/setAuthToken";
+
 import "./App.css";
 
-const App = () => {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = ({ loadUser }) => {
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
+
   return (
     <div className=".container-fluid App">
       <Header />
-      <Alerts />
+
+      <div className="alerts">
+        <Alerts />
+      </div>
 
       <div className="routes">
         <Routes>
@@ -38,4 +52,4 @@ const App = () => {
   );
 };
 
-export default connect()(App);
+export default connect(null, { loadUser })(App);
