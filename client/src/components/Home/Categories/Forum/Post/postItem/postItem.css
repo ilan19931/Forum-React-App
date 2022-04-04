@@ -1,0 +1,90 @@
+.postItem {
+  width: 70%;
+  margin: 0.5rem auto;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 1px 1px 2px gray, -1px 0 2px gray;
+
+  transition: all 300ms ease;
+}
+
+.postItem:hover {
+  box-shadow: none;
+}
+
+.postItem-container {
+}
+
+.postItem-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.profileAvatar {
+  margin-right: 0.5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.userMoto {
+  font-size: 14px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 20px;
+}
+
+.right span {
+  margin-right: 0.2rem;
+  font-size: 12px;
+}
+
+.postItem-body {
+  padding: 0.8rem;
+  background-color: white;
+  border-radius: 10px;
+  line-height: 1.5;
+  margin: 0.8rem 0;
+}
+
+.postItem-footer {
+  display: flex;
+  align-items: center;
+}
+
+.postItem-action {
+  background-color: lightgray;
+  padding: 0.3rem;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.postItem-action span {
+  margin-left: 0.2rem;
+}

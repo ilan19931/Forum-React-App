@@ -1,20 +1,21 @@
-.forums {
-  width: 100%;
+.categories {
+  width: 65%;
+  margin: 0 auto;
 }
 
-.forums-container {
+.categories-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   padding: 0.2rem;
 }
 
-.forum-container {
+.category-container {
   border-radius: 10px;
   margin-top: 0.6rem;
 }
 
-.forum-header {
+.category-header {
   font-size: 22px;
   font-weight: 600;
   border-radius: 10px;
@@ -26,7 +27,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.forum-header span {
+.category-header span {
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: 2px white solid;
@@ -38,40 +39,41 @@
   letter-spacing: 2px;
 }
 
-.forum-body {
+.category-body {
   margin-top: 1rem;
   width: 100%;
 }
 
-.forum-body:hover {
-  background: #f0f2f5;
-  transform: scale(0.98);
-}
-
-.subforums-container {
+.forums-container {
   width: 100%;
   background: rgb(251, 251, 251);
+  border-radius: 5px;
 }
 
-.subforum {
+.category-forum {
   width: 100%;
   display: flex;
   align-items: center;
   padding: 0.2rem;
   border-radius: 10px;
 }
-.subforum img {
+.category-forum:hover {
+  background: #f0f2f5;
+  transform: scale(0.98);
+}
+
+.category-forum img {
   height: 50px;
   margin: 0.5rem;
   border-radius: 60px;
 }
 
-.subforum-header {
+.category-forum-header {
   font-size: 18px;
   font-weight: 600;
   align-items: center;
 }
 
-.subforum-post-name {
+.category-forum-post-name {
   font-size: 14px;
 }

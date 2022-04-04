@@ -12,6 +12,7 @@
 .left {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .left img {
@@ -22,9 +23,13 @@
 
 .right {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.right .right-nav-item {
+.right-nav-item {
   margin: 0 0.3rem;
+}
+
+.welcome-text {
 }

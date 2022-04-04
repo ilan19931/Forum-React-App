@@ -6,11 +6,17 @@ const { check } = require("express-validator");
 const auth = require("../middleware/auth");
 
 const {
+  getPostById,
   getPostsByForumId,
   addPost,
   updatePost,
   deletePost,
 } = require("../services/post.service");
+
+// @route   GET api/posts/:post_id
+// @desc    get post by postId
+// @access  Public
+router.get("/byId/:post_id", async (req, res) => await getPostById(req, res));
 
 // @route   GET api/posts/:forum_id
 // @desc    get all posts by forum id
@@ -22,18 +28,20 @@ router.get("/:forum_id", async (req, res) => await getPostsByForumId(req, res));
 // @access  Private
 router.post(
   "/:forum_id",
-  [auth, [check("body", "body is required").not().isEmpty()]],
+  [
+    auth,
+    [
+      check("title", "title is required").not().isEmpty(),
+      check("body", "body is required").not().isEmpty(),
+    ],
+  ],
   async (req, res) => await addPost(req, res)
 );
 
 // @route   PUT api/posts/:post_id
 // @desc    update post
 // @access  Admin-Private
-router.put(
-  "/:post_id",
-  [auth, [check("body", "body is required").not().isEmpty()]],
-  async (req, res) => await updatePost(req, res)
-);
+router.put("/:post_id", [auth], async (req, res) => await updatePost(req, res));
 
 // @route   DELETE api/posts/:post_id
 // @desc    delete post

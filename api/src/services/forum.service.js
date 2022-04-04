@@ -6,6 +6,19 @@ const Category = require("../models/category.model");
 const Forum = require("../models/forum.model");
 
 // @route   GET api/forums/
+// @desc    get all forums
+// @access  Public
+async function getAllForums(req, res) {
+  try {
+    const forums = await Forum.find();
+
+    res.send({ forums });
+  } catch (err) {
+    return res.status(500).send("Server Error");
+  }
+}
+
+// @route   GET api/forums/category/:category_id
 // @desc    get all forums by category id
 // @access  Public
 async function getForumsByCategoryId(req, res) {
@@ -19,6 +32,25 @@ async function getForumsByCategoryId(req, res) {
 
     res.send(forums);
   } catch (err) {
+    return res.status(500).send("Server Error");
+  }
+}
+
+// @route   GET api/forums/:forum_id
+// @desc    get forum by id
+// @access  Public
+async function getForumById(req, res) {
+  const forumId = req.params.forum_id;
+  if (!mongoose.isValidObjectId(forumId)) {
+    return res.status(400).send({ errors: [{ msg: "invalid forum id." }] });
+  }
+
+  try {
+    const forum = await Forum.findById(forumId);
+
+    res.send(forum);
+  } catch (err) {
+    console.log(err);
     return res.status(500).send("Server Error");
   }
 }
@@ -128,4 +160,11 @@ async function deleteForum(req, res) {
   }
 }
 
-module.exports = { getForumsByCategoryId, addForum, updateForum, deleteForum };
+module.exports = {
+  getForumsByCategoryId,
+  addForum,
+  updateForum,
+  deleteForum,
+  getAllForums,
+  getForumById,
+};

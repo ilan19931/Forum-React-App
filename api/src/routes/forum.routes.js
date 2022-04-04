@@ -6,17 +6,29 @@ const { check } = require("express-validator");
 const adminAuth = require("../middleware/adminAuth");
 
 const {
+  getAllForums,
   getForumsByCategoryId,
   addForum,
   updateForum,
   deleteForum,
+  getForumById,
 } = require("../services/forum.service");
 
-// @route   GET api/forums/:category_id
+// @route   GET api/forums/
+// @desc    get all forums
+// @access  Public
+router.get("/", async (req, res) => await getAllForums(req, res));
+
+// @route   GET api/forums/forum_id
+// @desc    get forum by id
+// @access  Public
+router.get("/:forum_id", async (req, res) => await getForumById(req, res));
+
+// @route   GET api/forums/category/:category_id
 // @desc    get forums by category id
 // @access  Public
 router.get(
-  "/:category_id",
+  "/category/:category_id",
   async (req, res) => await getForumsByCategoryId(req, res)
 );
 

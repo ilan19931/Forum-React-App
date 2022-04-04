@@ -1,0 +1,114 @@
+.forum {
+  width: 75%;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 auto;
+
+  .grid {
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr 1fr;
+  }
+
+  .forum-container {
+    border-radius: 10px;
+
+    flex: 3;
+  }
+
+  .forum-right-side {
+    flex: 1;
+    align-self: flex-start;
+    padding: 0.5rem;
+    background-color: #f3f5f5;
+  }
+
+  .forum-right-side h2 {
+    text-align: center;
+  }
+
+  .forum-header {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.3rem;
+    background-color: #e2e5e6;
+    width: 100%;
+  }
+
+  .post-headers {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .posts-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .post-item {
+      background: #f1f2f3;
+      border-radius: 10px;
+      margin: 0.3rem 0;
+      padding: 0.4rem;
+      //box-shadow: 2px 2px 2px gray;
+      width: 100%;
+      transition: all 300ms ease;
+
+      .post-body {
+        display: flex;
+        align-items: center;
+
+        .post-status {
+          margin-right: 0.8rem;
+        }
+
+        .post-inner-body {
+          display: flex;
+          flex-direction: column;
+
+          span {
+            span {
+              font-weight: 900;
+            }
+          }
+
+          a {
+            margin-top: 10px;
+          }
+        }
+
+        p {
+          font-size: 17px;
+          font-weight: 600;
+        }
+      }
+
+      .post-stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          margin-left: 0.2rem;
+        }
+      }
+
+      .post-last-activity {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:hover {
+        // background-color: #ebedee;
+        transform: scale(1.007);
+        box-shadow: 1px 1px 1px gray;
+      }
+    }
+  }
+}

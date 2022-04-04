@@ -9,8 +9,9 @@ async function auth(req, res, next) {
       .send({ errors: [{ msg: "no token. authentication failed." }] });
   }
 
-  const match = await jwt.verify(token, process.env.JWT_SECRET);
-  if (!match) {
+  try {
+    const match = await jwt.verify(token, process.env.JWT_SECRET);
+  } catch (err) {
     return res
       .status(401)
       .send({ errors: [{ msg: "invalid token. authentication failed." }] });

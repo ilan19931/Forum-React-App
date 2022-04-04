@@ -5,6 +5,26 @@ const { validationResult } = require("express-validator");
 const Forum = require("../models/forum.model");
 const Post = require("../models/post.model");
 
+// @route   GET api/posts/byId/:post_id
+// @desc    get post by post id
+// @access  Public
+async function getPostById(req, res) {
+  const postId = req.params.post_id;
+
+  if (!mongoose.isValidObjectId(postId)) {
+    return res.status(400).send({ errors: [{ msg: "invalid post id." }] });
+  }
+
+  try {
+    const post = await Post.findById(postId);
+
+    res.send(post);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Server Error");
+  }
+}
+
 // @route   GET api/posts/:forum_id
 // @desc    get all posts by forum id
 // @access  Public
@@ -47,11 +67,12 @@ async function addPost(req, res) {
       return res.status(400).send({ errors: [{ msg: "invalid forum id." }] });
     }
 
-    const { body } = req.body;
+    const { title, body } = req.body;
 
     const newPost = new Post({
       forumId,
       userId: req.user._id,
+      title,
       body,
     });
 
@@ -148,4 +169,10 @@ async function deletePost(req, res) {
   }
 }
 
-module.exports = { getPostsByForumId, addPost, updatePost, deletePost };
+module.exports = {
+  getPostById,
+  getPostsByForumId,
+  addPost,
+  updatePost,
+  deletePost,
+};

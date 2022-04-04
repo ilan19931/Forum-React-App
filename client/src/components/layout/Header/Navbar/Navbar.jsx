@@ -9,9 +9,9 @@ import { logout } from "../../../../redux/actions/user.actions";
 import NavbarSearch from "./NavbarSearch/NavbarSearch";
 import "./navbar.css";
 
-const Navbar = ({ isAuthenticated, logout }) => {
+const Navbar = ({ auth, logout }) => {
   const guestLinks = (
-    <>
+    <div className="right">
       <Link to="/account/login">
         <button className="btn btn-primary right-nav-item">Login</button>
       </Link>
@@ -25,20 +25,24 @@ const Navbar = ({ isAuthenticated, logout }) => {
           Login via google
         </button>
       </Link>
-    </>
+    </div>
   );
 
   const userLinks = (
-    <>
-      <Link to="/">
-        <button
-          onClick={() => logout()}
-          className="btn btn-danger right-nav-item"
-        >
-          Logout
-        </button>
-      </Link>
-    </>
+    <div className="right">
+      <p className="welcome-text">
+        Welcome,{" "}
+        <Link to={`/user/profile/${auth.user._id}`}>
+          <b>{auth.user?.email}</b>
+        </Link>
+      </p>
+      <button
+        onClick={() => logout()}
+        className="btn btn-danger right-nav-item"
+      >
+        Logout
+      </button>
+    </div>
   );
 
   return (
@@ -53,13 +57,13 @@ const Navbar = ({ isAuthenticated, logout }) => {
         <NavbarSearch />
       </div>
 
-      <div className="right">{isAuthenticated ? userLinks : guestLinks}</div>
+      {auth.isAuthenticated ? userLinks : guestLinks}
     </nav>
   );
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

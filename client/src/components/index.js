@@ -7,4 +7,4 @@ export { default as Home } from "./Home/Home";
 export { default as Login } from "./Login/Login";
 export { default as Register } from "./Register/Register";
 export { default as Forum } from "./Home/Categories/Forum/Forum";
-export { default as Post } from "./Post/Post";
+export { default as Post } from "./Home/Categories/Forum/Post/Post";
